@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="News Aggregator Application"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>News Aggregator</title>
+    <!-- Add simple CAPTCHA styling -->
+    <style>
+      .captcha-container {
+        margin-bottom: 15px;
+      }
+      
+      .captcha-canvas {
+        background-color: #f5f5f5;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+      }
+      
+      .captcha-refresh {
+        cursor: pointer;
+        margin-left: 10px;
+        color: #0d6efd;
+      }
+      @font-face {
+        font-family: system-ui;
+        font-display: swap;
+      }
+      img {
+        /* Force aspect ratio */
+        aspect-ratio: attr(width) / attr(height);
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
