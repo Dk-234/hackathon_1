@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NewsWidget from '../components/NewsWidget';
+import VideoNewsCarousel from '../components/VideoNewsCarousel';
+import WeatherForecast from '../components/WeatherForecast';
 
 const Home = () => {
   const [topNews, setTopNews] = useState([]);
@@ -41,6 +43,9 @@ const Home = () => {
   return (
     <div className="home-page">
       <h1 className="mb-4">Latest News</h1>
+      
+      <WeatherForecast />
+      <VideoNewsCarousel />
       
       <NewsWidget 
         title="Top Headlines" 

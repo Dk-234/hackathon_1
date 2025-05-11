@@ -25,19 +25,24 @@ const protect = async (req, res, next) => {
         req.user = rows[0];
         next();
       } else {
-        res.status(401);
-        throw new Error('Not authorized');
+        res.status(401).json({ message: 'Not authorized' });
       }
     } catch (error) {
-      console.error(error);
-      res.status(401);
-      throw new Error('Not authorized');
-    }
-  }
+      console.error('Auth middleware error:', error);
 
-  if (!token) {
-    res.status(401);
-    throw new Error('Not authorized, no token');
+      if (error.name === 'TokenExpiredError') {
+        return res
+          .status(401)
+          .json({
+            message: 'Token expired, please login again',
+            tokenExpired: true,
+          });
+      }
+
+      res.status(401).json({ message: 'Not authorized' });
+    }
+  } else if (!token) {
+    res.status(401).json({ message: 'Not authorized, no token' });
   }
 };
 

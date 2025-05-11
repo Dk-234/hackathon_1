@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaSun, FaMoon, FaSearch, FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa';
+import { FaSun, FaMoon, FaSearch, FaSignInAlt, FaSignOutAlt, FaUser, FaBookmark } from 'react-icons/fa';
 
 const Navbar = ({ theme, toggleTheme }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -36,7 +36,7 @@ const Navbar = ({ theme, toggleTheme }) => {
     <nav className="navbar navbar-expand-lg">
       <div className="container">
         <Link className="navbar-brand" to="/">
-          News Aggregator
+          NewsHub
         </Link>
         <button
           className="navbar-toggler"
@@ -86,6 +86,11 @@ const Navbar = ({ theme, toggleTheme }) => {
           <ul className="navbar-nav">
             {user ? (
               <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/bookmarks">
+                    <FaBookmark /> Bookmarks
+                  </Link>
+                </li>
                 <li className="nav-item">
                   <span className="nav-link">Welcome, {user.username}</span>
                 </li>

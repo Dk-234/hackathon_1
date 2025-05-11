@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const ResetPassword = () => {
@@ -11,7 +11,6 @@ const ResetPassword = () => {
   const [tokenValid, setTokenValid] = useState(true);
 
   const { resetToken } = useParams();
-  const navigate = useNavigate();
 
   // Verify token validity on page load
   useEffect(() => {
@@ -46,7 +45,7 @@ const ResetPassword = () => {
     setLoading(true);
 
     try {
-      const response = await axios.put(`/api/users/reset-password/${resetToken}`, {
+      await axios.put(`/api/users/reset-password/${resetToken}`, {
         password,
       });
 

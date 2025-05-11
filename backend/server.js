@@ -22,6 +22,8 @@ app.use(express.urlencoded({ extended: false }));
 // Routes
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/news', require('./routes/newsRoutes'));
+app.use('/api/bookmarks', require('./routes/bookmarkRoutes'));
+app.use('/api/share', require('./routes/shareRoutes'));
 
 // Default route
 app.get('/', (req, res) => {
@@ -35,6 +37,17 @@ app.use((err, req, res, next) => {
     message: err.message,
     stack: process.env.NODE_ENV === 'production' ? null : err.stack
   });
+});
+
+// Process error handlers to prevent crashes
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+  console.log('Node NOT exiting...');
+});
+
+process.on('unhandledRejection', (err) => {
+  console.error('Unhandled Promise Rejection:', err);
+  console.log('Node NOT exiting...');
 });
 
 const PORT = process.env.PORT || 5000;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import SimpleCaptcha from '../components/SimpleCaptcha';
 
@@ -16,6 +16,7 @@ const Login = () => {
   const [captchaVerified, setCaptchaVerified] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Check if user is already logged in
   useEffect(() => {
@@ -24,6 +25,15 @@ const Login = () => {
       navigate('/');
     }
   }, [navigate]);
+
+  useEffect(() => {
+    // Check for redirect message from auth expiration
+    if (location.state?.message) {
+      setError(location.state.message);
+      // Clear the state to avoid showing the message after page refresh
+      window.history.replaceState({}, document.title);
+    }
+  }, [navigate, location]);
 
   const { email, password } = formData;
 
@@ -151,8 +161,8 @@ const Login = () => {
                     Don't have an account? <Link to="/register">Register</Link>
                   </p>
                   <p>
-                    <a 
-                      href="#" 
+                    <button 
+                      className="btn btn-link p-0 text-decoration-underline"
                       onClick={(e) => {
                         e.preventDefault();
                         setShowForgotPassword(true);
@@ -160,7 +170,7 @@ const Login = () => {
                       }}
                     >
                       Forgot Password?
-                    </a>
+                    </button>
                   </p>
                 </div>
               </>

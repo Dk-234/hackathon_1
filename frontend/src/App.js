@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import CategoryNews from './pages/CategoryNews';
 import SearchResults from './pages/SearchResults';
 import ResetPassword from './pages/ResetPassword';
+import Bookmarks from './pages/Bookmarks';
 import './App.css';
 
 function App() {
@@ -23,27 +24,23 @@ function App() {
 
   useEffect(() => {
     document.body.className = theme;
-
+    
     // Add global image error handler
     const handleImageErrors = () => {
       const images = document.querySelectorAll('img');
-      images.forEach((img) => {
+      images.forEach(img => {
         if (!img.complete || img.naturalWidth === 0) {
           img.style.display = 'none';
         }
       });
     };
-
-    window.addEventListener(
-      'error',
-      function (e) {
-        if (e.target.tagName.toLowerCase() === 'img') {
-          e.target.style.display = 'none';
-        }
-      },
-      true
-    );
-
+    
+    window.addEventListener('error', function(e) {
+      if (e.target.tagName.toLowerCase() === 'img') {
+        e.target.style.display = 'none';
+      }
+    }, true);
+    
     return () => {
       window.removeEventListener('error', handleImageErrors, true);
     };
@@ -61,6 +58,7 @@ function App() {
             <Route path="/category/:category" element={<CategoryNews />} />
             <Route path="/search" element={<SearchResults />} />
             <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
+            <Route path="/bookmarks" element={<Bookmarks />} />
           </Routes>
         </div>
       </div>

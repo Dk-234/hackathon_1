@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 // Generate JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRATION,
+    expiresIn: '3d', // Change to shorter time like '7d' if needed
   });
 };
 

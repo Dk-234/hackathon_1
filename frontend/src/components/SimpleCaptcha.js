@@ -91,6 +91,7 @@ const SimpleCaptcha = ({ onChange }) => {
   // Initialize captcha on component mount
   useEffect(() => {
     refreshCaptcha();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Draw captcha whenever captchaText changes
